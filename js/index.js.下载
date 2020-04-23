@@ -1,0 +1,42 @@
+  //登陆
+function login(url){
+	//alert(1);return false;
+	var account = $('#username').val();
+	var password = $('#pwd').val();
+	var code = $('#fcode').val();
+		$.post(	url,{"username":account,"password":password,"code":code},function(data){
+				if(data == 1){
+					layer.msg('登陆成功，正在跳转中...',{icon: 1,time: 2000,shade: [0.8, '#393D49']},function(){
+						parent.location.reload();    //刷新父页面
+					});
+				}else{
+					layer.msg(data.info,{icon: 2,time: 2000},function(){
+						//parent.window.location.reload();
+					});
+				}
+			}, "json"); 
+}
+function register(url){
+	layer.open({
+		type: 2,
+    title: '用户注册',
+    shadeClose: true,
+    shade: 0.2,
+    area: ['570px','500px'],
+		content: url
+	});
+}
+	
+//$(document).ready(function(){
+//var clip = new ZeroClipboard($('.futitle'), { 
+//moviePath: '__PUBLIC__/Admin/jquery/ZeroClipboard.swf' }); 
+//clip.on('copy', function(){
+//  layer.msg('已成功复制')
+//});
+//
+//	var clip = new ZeroClipboard($('.fuzhi'), { 
+//	  moviePath: '__PUBLIC__/Admin/jquery/ZeroClipboard.swf' }); 
+//	  clip.on('copy', function(){
+//	    layer.msg('已成功复制')
+//	  });
+//});	
